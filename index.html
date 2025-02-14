@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Don't Believe in Astrology - By Debra Silverman</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.5/cdn.min.js" defer></script>
+    <style>
+        :root {
+            --primary-color: #6B4E71;
+            --secondary-color: #9B8B9F;
+            --accent-color: #E4D0D0;
+            --text-color: #333;
+            --light-bg: #F9F6F7;
+            --amazon-color: #ff9900;
+            --amazon-hover-color: #cc7a00;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        .sticky-banner {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 0.5rem;
+            z-index: 1000;
+        }
+
+        .hero {
+            background: var(--light-bg);
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .book-preview {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+            margin: 4rem 0;
+            flex-wrap: wrap;
+        }
+
+        .pdf-image {
+            position: relative;
+            width: 300px;
+            height: 450px;
+            border-radius: 8px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+            transition: transform 0.2s;
+            margin: 0 auto;
+        }
+
+        .pdf-image:hover {
+            transform: scale(1.05);
+        }
+
+        .pdf-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .pdf-link {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .pdf-image:hover .pdf-link {
+            opacity: 1;
+        }
+
+        .cta-button, .amazon-link {
+            display: inline-block;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: transform 0.2s;
+            margin: 1rem 0;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            background: var(--secondary-color);
+        }
+
+        .amazon-link {
+            background: var(--amazon-color);
+            color: white;
+        }
+
+        .amazon-link:hover {
+            transform: translateY(-2px);
+            background: var(--amazon-hover-color);
+        }
+
+        .bonus-tiers {
+            background: var(--light-bg);
+            padding: 4rem 0;
+        }
+
+        .tier-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .about-section, .title-section, .inspiration-section {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .author-section {
+            background: var(--light-bg);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .author-photo {
+            width: 200px;
+            height: auto;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            display: block;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .book-preview {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <style>
+        /* ... (Your existing CSS styles) ... */
+
+        .book-title-section {
+            text-align: center; /* Center the title */
+            margin-top: 3rem; /* Add spacing below the cover */
+            margin-bottom: 2rem; /* Add spacing below the title section */
+        }
+
+        .book-title {
+            font-size: 2.5rem; /* Use your existing title size */
+            font-family: 'Playfair Display', serif; /* Use Playfair Display */
+            color: #4b0082; /* Use indigo color */
+            margin-bottom: 1rem; /* Space between title and subtitle */
+        }
+
+        .book-subtitle {
+            font-size: 1.6rem; /* Adjust subtitle size as needed */
+            font-family: 'Playfair Display', serif; /* Use Playfair Display */
+            color: var(--secondary-color); /* Use secondary color */
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <div class="pdf-image">
+                <a href="/Users/naavudai/Desktop/Test/BookCover_2025.pdf" target="_blank">
+                    <img src="/Users/naavudai/Desktop/Test/book-cover-thumbnail.jpg" alt="Book Cover">
+                    <span class="pdf-link">View Book Cover PDF</span>
+                </a>
+            </div>
+
+            <div class="book-title-section"> <h1 class=>Book Title</h1><h1 class="book-title">I Don't Believe in Astrology</h1>
+                <h2 class="book-subtitle">A Therapist's Guide to the Life-Changing Wisdom of the Stars</h2>
+            </div>
+
+            <p style="margin: 1rem 0;">Available April 8, 2025</p>
+            <a href="https://www.amazon.com/Dont-Believe-Astrology-Therapists-Life-Changing/dp/1250342392/" class="amazon-link" target="_blank" style="display: block; text-align: center;">Buy on Amazon</a>
+            <a href="#order" class="cta-button">Pre-Order Now & Get Free Bonus Gifts</a>
+        </div>
+    </section>
+
+    <section class="inspiration-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Inspiration</h2>
+            <ul style="list-style: none; padding: 0; text-align: center;">
+                <li style="margin-bottom: 1rem;"><a href="https://info.lewishowes.com/money-book" target="_blank" class="cta-button">Money Book by Lewis Howes</a></li>
+                <li style="margin-bottom: 1rem;"><a href="https://worthybook.com/" target="_blank" class="cta-button">Worthy Book</a></li>
+                <li style="margin-bottom: 1rem;"><a href="https://www.the5typesofwealth.com/" target="_blank" class="cta-button">The 5 Types of Wealth</a></li>
+                <li style="margin-bottom: 1rem;"><a href="https://noahkagan.com/resources/" target="_blank" class="cta-button">Noah Kagan's Resources</a></li>
+                <li style="margin-bottom: 1rem;"><a href="https://codiesanchez.com/book/" target="_blank" class="cta-button">Codye Sanchez's Book</a></li>
+                <li style="margin-bottom: 1rem;"><a href="https://getdynamicdrive.com/" target="_blank" class="cta-button">Get Dynamic Drive</a></li>
+                <li style="margin-bottom: 1rem;"><a href="https://mindyourmindsetbook.com/" target="_blank" class="cta-button">Mind Your Mindset Book</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="order" class="bonus-tiers">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 2rem;">ORDER NOW & CLAIM EXCLUSIVE BONUS GIFTS</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">Order the book below and register your purchase below to gain access to exclusive bonus content including:</p>
+            
+            <!-- Order 1 Book -->
+            <div class="grid-3">
+                <div class="tier-card">
+                    <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1.5rem;">Order 1 Book</h3>
+                    <div style="margin-bottom: 1.5rem;">
+                        <p style="font-weight: 500; margin-bottom: 0.5rem;">Receive:</p>
+                        <ul style="list-style: none;">
+                            <li style="margin-bottom: 0.5rem;">✨ Tarot Booklet</li>
+                            <li style="margin-bottom: 0.5rem;">✨ Access to LIVE Destiny Webinar</li>
+                        </ul>
+                    </div>
+                    <p style="color: var(--primary-color); font-weight: bold; font-size: 1.25rem; margin-bottom: 1.5rem; text-align: center;">$500 Value</p>
+                    <div>
+                        <p style="font-weight: 500; margin-bottom: 0.5rem;">STEP 1:</p>
+                        <p style="margin-bottom: 1rem;">Pre-order "I Don't Believe in Astrology" at Amazon, Barnes & Noble or anywhere books are sold.</p>
+                        <p style="font-weight: 500; margin-bottom: 0.5rem;">STEP 2:</p>
+                        <p style="margin-bottom: 1rem;">Register Your Purchase</p>
+                        <section id="claim" class="about-section">
+                            <div class="container">
+                                <h2 style="text-align: center; margin-bottom: 2rem;">Register Your Purchase</h2>
+                                <div style="max-width: 500px; margin: 0 auto;">
+                                    <form x-data="{ submitted: false }" @submit.prevent="submitted = true">
+                                        <div class="form-group">
+                                            <input type="text" placeholder="First Name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Last Name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" placeholder="Email Address" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Book Order Confirmation / Receipt Number" required>
+                                        </div>
+                                        <button class="cta-button" style="width: 100%;" x-show="!submitted">
+                                            Claim Your Bonus
+                                        </button>
+                                        <p x-show="submitted" style="text-align: center; color: var(--primary-color);">
+                                            Thank you! Check your email for access to your bonuses.
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+                        </section>
+                        <a href="#claim" class="cta-button" style="width: 100%; text-align: center;">Claim Bonus</a>
+                    </div>
+                </div>
+            </div>
+    
+            <head>
+                <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">  <style>
+                    /* ... (Your existing CSS styles) ... */
+            
+                    .callout-box {
+                        background-color: #f2f2f2; /* Light gray background - adjust as needed */
+                        padding: 2rem;
+                        border-radius: 0.5rem;
+                        margin: 2rem auto;
+                        max-width: 800px;
+                        text-align: center;
+                        border: 2px solid #ddd; /* Add a subtle border */
+                        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+                        
+                    }
+            
+                    .callout-text {
+                        font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
+                        font-weight: 700; /* Bold (700 weight is often close to ExtraBold) */
+                        font-size: 1.2rem; /* Adjust font size as needed */
+                        color: #34495e; /* Dark blue color - adjust as needed */
+                        text-transform: uppercase; /* Uppercase text */
+                        letter-spacing: 1px; /* Add letter spacing */
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="callout-box">
+                    <p class="callout-text">Want even more resources? Purchase more than 1 copy of the book to claim extra bonuses!!</p>
+                </div>
+            
+                </body>
+            </html>
+    
+            <!-- Order 5 and 10 Books -->
+            <div class="grid-3">
+                <!-- Order 5 Books -->
+                <div class="grid-3">
+                    <div class="tier-card">
+                        <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1.5rem;">Order 5 Books</h3>
+                        <div style="margin-bottom: 1.5rem;">
+                            <p style="font-weight: 500; margin-bottom: 0.5rem;">Receive:</p>
+                            <ul style="list-style: none;">
+                                <li style="margin-bottom: 0.5rem;">✨ The Psychology Bundle</li>
+                                <li style="margin-bottom: 0.5rem;">✨ Astrology/Tarot Course</li>
+                                <li style="margin-bottom: 0.5rem;">✨ Tarot Booklet</li>
+                                <li style="margin-bottom: 0.5rem;">✨ LIVE Destiny Webinar Access</li>
+                            </ul>
+                        </div>
+                        <p style="color: var(--primary-color); font-weight: bold; font-size: 1.25rem; margin-bottom: 1.5rem; text-align: center;">$1000 Value</p>
+                        <div class="button-container"> <a href="#claim" class="cta-button">Purchase / Claim Here</a> </div>
+                    </div>
+                <!-- Order 10 Books -->
+                <div class="tier-card">
+                    <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1.5rem;">Order 10 Books</h3>
+                    <div style="margin-bottom: 1.5rem;">
+                        <p style="font-weight: 500; margin-bottom: 0.5rem;">Receive:</p>
+                        <ul style="list-style: none;">
+                            <li style="margin-bottom: 0.5rem;">✨ 1 Full Year of Psychological Gold</li>
+                            <li style="margin-bottom: 0.5rem;">✨ The Psychology Bundle</li>
+                            <li style="margin-bottom: 0.5rem;">✨ Astrology/Tarot Course</li>
+                            <li style="margin-bottom: 0.5rem;">✨ Tarot Booklet</li>
+                            <li style="margin-bottom: 0.5rem;">✨ LIVE Destiny Webinar Access</li>
+                        </ul>
+                    </div>
+                    <p style="color: var(--primary-color); font-weight: bold; font-size: 1.25rem; margin-bottom: 1.5rem; text-align: center;">$1500 Value</p>
+                    <div class="button-container"> <a href="#claim" class="cta-button">Purchase / Claim Here</a> </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 2rem;">About the Book</h2>
+            <div class="book-preview">
+                <div class="pdf-image">
+                    <a href="path/to/your/book-preview.pdf" target="_blank">
+                        <img src="path/to/your/book-preview-thumbnail.jpg" alt="Book Preview">
+                        <span class="pdf-link">View Book Preview PDF</span>
+                    </a>
+                </div>
+            </div>
+            <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+                <p style="margin-bottom: 1rem;">
+                    An accessible guide to the life-changing benefits of astrology by renowned psychotherapist and astrologer, Debra Silverman.
+                </p>
+                <p style="margin-bottom: 1rem;">
+                    In a chaotic, confusing, and divisive world, Debra Silverman introduces astrology as the medicine for accepting our human nature--its idiosyncrasies and dilemmas. Through an application of both therapy and astrology, this breakthrough guide equips readers with tools that release self-judgment, inner criticism, negativity, and misunderstanding.
+                </p>
+                <p>
+                    Learn the meaning of the sun, moon, rising sign, Mercury, and Saturn. Using Debra's method combining the wisdom of astrology and psychology, readers will remember the truth of their soul's expression, seen through the eyes of self-love.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="author-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 2rem;">About the Author</h2>
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <img src="/Users/naavudai/Desktop/Test/author-photo.jpg" alt="Debra Silverman" class="author-photo">
+                <p style="margin-bottom: 1rem;">
+                    Astrologer, psychotherapist, and spiritual guide Debra Silverman is here to bring hope to those experiencing collective pain. With a climate crisis standing in the foreground, she brings her wisdom of the elements and astrology to the table to uncover solutions for our times. She is the author of The Missing Element: Inspiring Compassion for the Human Condition (Findhorn Press), and is founder of a school that has trained more than 4,000 people in Astrology. Debra is also host of The I Don’t Believe in Astrology Podcast.
+                </p>
+                <p style="margin-bottom: 1rem;">
+                    Debra Silverman is madly in love with Astrology. Where once she was a skeptic, she now believes the wisdom of Astrology is an undeniable, dependable, and healing balm for society as we face post pandemic life and a climate crisis. For Silverman, Astrology is medicine. While there is no “one size fits all” approach, Debra Silverman has developed a unique psychological-spiritual model. She connects with each person she practices with on a deeper level in order to empower them to their full potential.
+                </p>
+                <p style="margin-bottom: 1rem;">
+                    Connect with Debra at <a href="https://debrasilvermanastrology.com/" target="_blank">https://debrasilvermanastrology.com/</a> and on social:
+                </p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/debrasilverman_astrology/" target="_blank" class="cta-button">Instagram</a>
+                    <a href="https://twitter.com/debrasilverman" target="_blank" class="cta-button">X</a>
+                    <a href="https://www.facebook.com/debrasilvermanastrology" target="_blank" class="cta-button">Facebook</a>
+                    <a href="https://www.linkedin.com/in/debrasilverman/" target="_blank" class="cta-button">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
